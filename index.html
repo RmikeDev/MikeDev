@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mih's Bio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Fondo animado -->
+  <div class="background"></div>
+
+  <!-- Cuadro principal -->
+  <div class="card tilt">
+    <img src="https://i.imgur.com/TKuWkPO.png" class="avatar" alt="Mih" />
+
+    <h1><span id="typed-name"></span></h1>
+    <p id="typed-desc"></p>
+
+    <div class="social-icons">
+      <a href="https://github.com/RmikeDev" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" />
+      </a>
+      <a href="https://www.roblox.com/users/2967072814/profile" target="_blank">
+        <img src="https://i.postimg.cc/cL94vJt0/6294eb324609037792ef36f4.png" alt="Roblox" />
+      </a>
+      <a href="https://steamcommunity.com/profiles/76561199256305119" target="_blank">
+        <img src="https://i.postimg.cc/NFcQ39S7/CITYPNG-COM-Aesthetic-Purple-Steam-Logo-Icon-HD-PNG-2000x2000.png" alt="Steam" />
+      </a>
+    </div>
+
+    <div class="discord-section">
+      <div class="discord-block">
+        <img src="https://i.imgur.com/TKuWkPO.png" class="discord-pic" />
+        <a href="https://discord.com/users/1324956329130852526" target="_blank" class="discord-btn">
+          Add Me on Discord
+        </a>
+      </div>
+      <div class="discord-block">
+        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" class="discord-pic" />
+        <a href="https://discord.gg/y9MM5dk9" target="_blank" class="discord-btn">
+          Join My Server
+        </a>
+      </div>
+    </div>
+
+    <!-- Reproductor -->
+    <div class="music-player">
+      <div id="song-title"></div>
+      <input type="range" id="progress" value="0" />
+      <div class="controls">
+        <button id="prev">◁</button>
+        <button id="play"></button>
+        <button id="next">▷</button>
+      </div>
+    </div>
+  </div>
+
+  <audio id="audio" autoplay></audio>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
