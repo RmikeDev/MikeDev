@@ -1,0 +1,172 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #0b0016;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100dvh;
+  overflow: hidden;
+  position: relative;
+  flex-direction: column;
+}
+
+.background {
+  background: url('https://i.postimg.cc/nhPLTrdL/4593e9f8d2f3a50755be9e358974e53b.gif')
+    center/cover no-repeat fixed;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  filter: brightness(0.4);
+}
+
+.card {
+  background: transparent;
+  padding: 2rem;
+  border-radius: 20px;
+  text-align: center;
+  border: 2px solid #a678e4;
+  box-shadow: 0 0 20px #a678e455;
+  width: 90vw;
+  max-width: 420px;
+  z-index: 1;
+  margin: auto;
+  backdrop-filter: none;
+  box-sizing: border-box;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 2px solid #b37fff;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 1.8rem;
+  color: white;
+  margin: 0.5rem 0;
+}
+
+p {
+  font-size: 1rem;
+  color: #ccc;
+  white-space: pre-line;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  margin: 1.5rem 0;
+}
+
+.social-icons img {
+  width: 32px;
+  height: 32px;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 0 4px #b37fff);
+}
+
+.social-icons img:hover {
+  transform: scale(1.2);
+}
+
+.discord-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.discord-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.discord-pic {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.discord-btn {
+  background: #b37fff;
+  padding: 0.4rem 1rem;
+  border-radius: 8px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.discord-btn:hover {
+  background: #d2a6ff;
+}
+
+.music-player {
+  margin-top: 2rem;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 0 10px #b37fff33;
+  color: white;
+}
+
+#track-title {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+#progress {
+  width: 100%;
+  appearance: none;
+  height: 6px;
+  background: #b37fff;
+  border-radius: 4px;
+  outline: none;
+  margin-bottom: 0.5rem;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.controls button {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.controls button:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 500px) {
+  .card {
+    margin: 2rem 1rem;
+    padding: 1.2rem;
+  }
+
+  .avatar {
+    width: 90px;
+    height: 90px;
+  }
+
+  .discord-section {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+}
