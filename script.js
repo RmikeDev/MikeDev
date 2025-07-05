@@ -1,5 +1,5 @@
 const hiScreen = document.createElement("div");
-hiScreen.innerHTML = `<span class="hi-text">Hi</span>`;
+hiScreen.innerHTML = '<span class="hi-text">Hi</span>';
 hiScreen.style.cssText = `
   position: fixed;
   top: 0; left: 0;
@@ -24,10 +24,9 @@ style.textContent = `
     opacity: 0;
     animation: fadeIn 1.2s ease-out forwards;
   }
+
   @keyframes fadeIn {
-    to {
-      opacity: 1;
-    }
+    to { opacity: 1; }
   }
 `;
 document.head.appendChild(style);
@@ -36,11 +35,7 @@ function typeText(el, text, speed = 50) {
   let i = 0;
   function typing() {
     if (i < text.length) {
-      if (text.charAt(i) === "\n") {
-        el.innerHTML += "<br>";
-      } else {
-        el.innerHTML += text.charAt(i);
-      }
+      el.innerHTML += text.charAt(i) === "\n" ? "<br>" : text.charAt(i);
       i++;
       setTimeout(typing, speed);
     }
@@ -86,20 +81,25 @@ playBtn.addEventListener("click", () => {
   }
   updatePlayIcon();
 });
+
 nextBtn.addEventListener("click", () => {
   currentTrack = (currentTrack + 1) % playlist.length;
   loadTrack(currentTrack);
 });
+
 prevBtn.addEventListener("click", () => {
   currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
   loadTrack(currentTrack);
 });
+
 audio.addEventListener("timeupdate", () => {
   progress.value = (audio.currentTime / audio.duration) * 100 || 0;
 });
+
 progress.addEventListener("input", () => {
   audio.currentTime = (progress.value / 100) * audio.duration;
 });
+
 audio.addEventListener("ended", () => {
   currentTrack = (currentTrack + 1) % playlist.length;
   loadTrack(currentTrack);
