@@ -25,17 +25,23 @@ style.textContent = `
     animation: fadeIn 1.2s ease-out forwards;
   }
   @keyframes fadeIn {
-    to { opacity: 1; }
+    to {
+      opacity: 1;
+    }
   }
 `;
 document.head.appendChild(style);
 
 function typeText(el, text, speed = 50) {
   let i = 0;
-  el.innerHTML = ""; 
+  el.innerHTML = "";
   function typing() {
     if (i < text.length) {
-      el.innerHTML += text.charAt(i) === "\n" ? "<br>" : text.charAt(i);
+      if (text.charAt(i) === "\n") {
+        el.innerHTML += "<br>";
+      } else {
+        el.innerHTML += text.charAt(i);
+      }
       i++;
       setTimeout(typing, speed);
     }
@@ -74,50 +80,44 @@ function updatePlayIcon() {
 }
 
 playBtn.addEventListener("click", () => {
-  audio.paused ? audio.play() : audio.pause();
+  if (audio.paused) {
+    audio.play();
+  } else {
+    audio.pause();
+  }
   updatePlayIcon();
 });
-
 nextBtn.addEventListener("click", () => {
   currentTrack = (currentTrack + 1) % playlist.length;
   loadTrack(currentTrack);
 });
-
 prevBtn.addEventListener("click", () => {
   currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
   loadTrack(currentTrack);
 });
-
 audio.addEventListener("timeupdate", () => {
   progress.value = (audio.currentTime / audio.duration) * 100 || 0;
 });
-
 progress.addEventListener("input", () => {
   audio.currentTime = (progress.value / 100) * audio.duration;
 });
-
 audio.addEventListener("ended", () => {
   currentTrack = (currentTrack + 1) % playlist.length;
   loadTrack(currentTrack);
 });
 
-let pageStarted = false;
-
 function startPage() {
-  if (pageStarted) return;
-  pageStarted = true;
-
   hiScreen.remove();
   document.querySelector(".card").style.display = "block";
-
   loadTrack(currentTrack);
 
-  const nameEl = document.getElementById("typed-name");
-  const descEl = document.getElementById("typed-desc");
-
-  typeText(nameEl, "Mih");
+  typeText(document.getElementById("typed-name"), "Mih");
   setTimeout(() => {
-    typeText(descEl, "Hi, I'm 18 years old and live in Colombia.\nI've been learning Python and Lua for 6 months.", 35);
+    typeText(
+      document.getElementById("typed-desc"),
+      "Hi, I'm 18 years old and live in Colombia.\nI've been learning Python and Lua for 6 months.",
+      35
+    );
   }, 800);
 
   VanillaTilt.init(document.querySelector(".tilt"), {
