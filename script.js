@@ -45,10 +45,10 @@ function typeText(el, text, speed = 50) {
 }
 
 const playlist = [
-  { title: "Condenado al Éxito", src: "https://files.catbox.moe/64div5.mp3" },
+  { title: "Shot For Me", src: "https://files.catbox.moe/gbljt4.mp3" },
   { title: "Awful Things", src: "https://files.catbox.moe/h2k35s.mp3" },
   { title: "Okk", src: "https://files.catbox.moe/g91ulp.mp3" },
-  { title: "Shot For Me", src: "https://files.catbox.moe/gbljt4.mp3" }
+  { title: "Condenado al Éxito", src: "https://files.catbox.moe/64div5.mp3" }
 ];
 let currentTrack = 0;
 const audio = new Audio(playlist[currentTrack].src);
