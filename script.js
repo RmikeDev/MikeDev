@@ -10,6 +10,7 @@ hiScreen.style.cssText = `
   justify-content: center;
   z-index: 9999;
   cursor: pointer;
+  animation: fadeIn 1s ease-out;
 `;
 document.body.appendChild(hiScreen);
 
@@ -17,31 +18,25 @@ const style = document.createElement("style");
 style.textContent = `
   .hi-text {
     font-family: 'Segoe UI', sans-serif;
-    font-size: 4rem;
-    font-weight: 700;
+    font-size: 4.5rem;
+    font-weight: 800;
     color: white;
-    text-shadow: 0 0 10px #b37fff, 0 0 20px #b37fff66;
+    text-shadow: 0 0 15px #b37fff, 0 0 30px #b37fff66;
     opacity: 0;
-    animation: fadeIn 1.2s ease-out forwards;
+    animation: hiFadeIn 1.4s ease-out forwards;
   }
-  @keyframes fadeIn {
-    to {
-      opacity: 1;
-    }
+  @keyframes hiFadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
   }
 `;
 document.head.appendChild(style);
 
 function typeText(el, text, speed = 50) {
   let i = 0;
-  el.innerHTML = "";
   function typing() {
     if (i < text.length) {
-      if (text.charAt(i) === "\n") {
-        el.innerHTML += "<br>";
-      } else {
-        el.innerHTML += text.charAt(i);
-      }
+      el.textContent += text.charAt(i);
       i++;
       setTimeout(typing, speed);
     }
@@ -50,12 +45,11 @@ function typeText(el, text, speed = 50) {
 }
 
 const playlist = [
-  { title: "Shot For Me - Drake", src: "https://files.catbox.moe/gbljt4.mp3" },
   { title: "Condenado al Éxito", src: "https://files.catbox.moe/64div5.mp3" },
   { title: "Awful Things", src: "https://files.catbox.moe/h2k35s.mp3" },
-  { title: "Okk", src: "https://files.catbox.moe/g91ulp.mp3" }
+  { title: "Okk", src: "https://files.catbox.moe/g91ulp.mp3" },
+  { title: "Shot For Me", src: "https://files.catbox.moe/gbljt4.mp3" }
 ];
-
 let currentTrack = 0;
 const audio = new Audio(playlist[currentTrack].src);
 audio.volume = 1.0;
@@ -72,7 +66,6 @@ function loadTrack(index) {
   audio.play();
   updatePlayIcon();
 }
-
 function updatePlayIcon() {
   playBtn.innerHTML = audio.paused
     ? '<svg viewBox="0 0 24 24" fill="white" width="18" height="18"><polygon points="5,3 19,12 5,21"/></svg>'
@@ -106,33 +99,30 @@ audio.addEventListener("ended", () => {
   loadTrack(currentTrack);
 });
 
-function startPage() {
-  hiScreen.remove();
-  document.querySelector(".card").style.display = "block";
-  loadTrack(currentTrack);
+document.body.addEventListener("click", () => {
+  if (hiScreen) {
+    hiScreen.remove();
+    document.querySelector(".card").style.display = "block";
+    loadTrack(currentTrack);
+    typeText(document.getElementById("typed-name"), "Mih");
+    setTimeout(() => {
+      typeText(
+        document.getElementById("typed-desc"),
+        "Hi, I'm 18 years old and live in Colombia.\nI've been learning Python and Lua for 6 months.",
+        35
+      );
+    }, 800);
 
-  typeText(document.getElementById("typed-name"), "Mih");
-  setTimeout(() => {
-    typeText(
-      document.getElementById("typed-desc"),
-      "Hi, I'm 18 years old and live in Colombia.\nI've been learning Python and Lua for 6 months.",
-      35
-    );
-  }, 800);
+    VanillaTilt.init(document.querySelector(".tilt"), {
+      max: 10,
+      speed: 400,
+      glare: true,
+      "max-glare": 0.2,
+    });
 
-  VanillaTilt.init(document.querySelector(".tilt"), {
-    max: 10,
-    speed: 400,
-    glare: true,
-    "max-glare": 0.2,
-  });
-
-  document.addEventListener("mousemove", sparkleTrail);
-}
-
-["click", "touchstart"].forEach(event => {
-  document.body.addEventListener(event, startPage, { once: true });
-});
+    document.addEventListener("mousemove", sparkleTrail);
+  }
+}, { once: true });
 
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelector(".card").style.display = "none";
