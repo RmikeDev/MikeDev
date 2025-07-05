@@ -1,5 +1,5 @@
 const hiScreen = document.createElement("div");
-hiScreen.innerHTML = '<span class="hi-text">Hi</span>';
+hiScreen.innerHTML = `<span class="hi-text">Hi</span>`;
 hiScreen.style.cssText = `
   position: fixed;
   top: 0; left: 0;
@@ -24,7 +24,6 @@ style.textContent = `
     opacity: 0;
     animation: fadeIn 1.2s ease-out forwards;
   }
-
   @keyframes fadeIn {
     to { opacity: 1; }
   }
@@ -33,6 +32,7 @@ document.head.appendChild(style);
 
 function typeText(el, text, speed = 50) {
   let i = 0;
+  el.innerHTML = ""; 
   function typing() {
     if (i < text.length) {
       el.innerHTML += text.charAt(i) === "\n" ? "<br>" : text.charAt(i);
@@ -74,11 +74,7 @@ function updatePlayIcon() {
 }
 
 playBtn.addEventListener("click", () => {
-  if (audio.paused) {
-    audio.play();
-  } else {
-    audio.pause();
-  }
+  audio.paused ? audio.play() : audio.pause();
   updatePlayIcon();
 });
 
@@ -105,29 +101,33 @@ audio.addEventListener("ended", () => {
   loadTrack(currentTrack);
 });
 
+let pageStarted = false;
+
 function startPage() {
-  if (hiScreen) {
-    hiScreen.remove();
-    document.querySelector(".card").style.display = "block";
-    loadTrack(currentTrack);
-    typeText(document.getElementById("typed-name"), "Mih");
-    setTimeout(() => {
-      typeText(
-        document.getElementById("typed-desc"),
-        "Hi, I'm 18 years old and live in Colombia.\nI've been learning Python and Lua for 6 months.",
-        35
-      );
-    }, 800);
+  if (pageStarted) return;
+  pageStarted = true;
 
-    VanillaTilt.init(document.querySelector(".tilt"), {
-      max: 10,
-      speed: 400,
-      glare: true,
-      "max-glare": 0.2,
-    });
+  hiScreen.remove();
+  document.querySelector(".card").style.display = "block";
 
-    document.addEventListener("mousemove", sparkleTrail);
-  }
+  loadTrack(currentTrack);
+
+  const nameEl = document.getElementById("typed-name");
+  const descEl = document.getElementById("typed-desc");
+
+  typeText(nameEl, "Mih");
+  setTimeout(() => {
+    typeText(descEl, "Hi, I'm 18 years old and live in Colombia.\nI've been learning Python and Lua for 6 months.", 35);
+  }, 800);
+
+  VanillaTilt.init(document.querySelector(".tilt"), {
+    max: 10,
+    speed: 400,
+    glare: true,
+    "max-glare": 0.2,
+  });
+
+  document.addEventListener("mousemove", sparkleTrail);
 }
 
 ["click", "touchstart"].forEach(event => {
