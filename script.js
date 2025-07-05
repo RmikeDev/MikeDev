@@ -36,7 +36,11 @@ function typeText(el, text, speed = 50) {
   let i = 0;
   function typing() {
     if (i < text.length) {
-      el.textContent += text.charAt(i);
+      if (text.charAt(i) === "\n") {
+        el.innerHTML += "<br>";
+      } else {
+        el.innerHTML += text.charAt(i);
+      }
       i++;
       setTimeout(typing, speed);
     }
