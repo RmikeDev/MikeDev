@@ -130,10 +130,6 @@ function startPage() {
   document.body.addEventListener(event, startPage, { once: true });
 });
 
-    document.addEventListener("mousemove", sparkleTrail);
-  }
-}, { once: true });
-
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelector(".card").style.display = "none";
 });
